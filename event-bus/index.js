@@ -7,13 +7,13 @@ app.use(express.json());
 const events = [];
 app.post('/events', async (req, res) => {
   const event = req.body;
-
+  console.log(event);
   events.push(event);
 
-  await axios.post('http://posts-clusterip-srv:4000/events', events);
-  await axios.post('http://comments-srv:4001/events', events);
-  await axios.post('http://query-srv:4002/events', events);
-  await axios.post('http://moderation-srv:4003/events', events);
+  await axios.post('http://posts-clusterip-srv:4000/events', event);
+  await axios.post('http://comments-srv:4001/events', event);
+  await axios.post('http://query-srv:4002/events', event);
+  await axios.post('http://moderation-srv:4003/events', event);
 
   res.send({ status: 'OK' });
 });
